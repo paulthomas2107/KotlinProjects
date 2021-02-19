@@ -51,4 +51,30 @@ fun main() {
     }
     val people = listOf("Pope John", "Prince Leo", "Sister Ola")
     sayHelloToList("Bonjour", people)
+
+    // Variable size of paramaters
+    fun sayHelloToListV2(greeting: String, vararg itemsToGreet:String) {
+        itemsToGreet.forEach {itemToGreet ->
+            println("$greeting $itemToGreet")
+        }
+    }
+    sayHelloToListV2("Paul")
+    sayHelloToListV2("Paul", "Hiya...", "Bonjour", "Hallo", "Tuti")
+
+    // Using Spread
+    var cars = arrayOf("Ford", "Cadillac", "Dodge", "MG Mini")
+    sayHelloToListV2("Hi !", *cars)
+
+    // Normal call
+    fun greetPerson(greeting: String = "HaHoi !", name: String = "I am a default") = println("$greeting $name")
+    greetPerson("Hello", "Paul")
+    // or named arguments move order of params around
+    greetPerson(name="Paul", greeting="Hello")
+
+    // Default method params -- takes values set from signature
+    greetPerson() // takes both defaults
+    greetPerson(name="Paul") // takes greeting default
+    greetPerson(greeting="Hello") // takes name default
+
+
 }
