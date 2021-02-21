@@ -16,10 +16,12 @@ interface SessionInfoProvider {
     fun getSessionId(): String
 }
 
-class BasicInfoProvider: PersonInfoProvider, SessionInfoProvider {
+open class BasicInfoProvider: PersonInfoProvider, SessionInfoProvider { // open can noe be inherited from
 
     override val providerInfo: String
         get() = "BasicInfoProvider..."
+
+    protected open val sessionIdPrefix: String = "Session"
 
     override fun printInfo(person: Person) {
         super.printInfo(person)
@@ -27,13 +29,13 @@ class BasicInfoProvider: PersonInfoProvider, SessionInfoProvider {
     }
 
     override fun getSessionId(): String {
-        return "Some session data"
+         return sessionIdPrefix
     }
 }
 
 fun main() {
 
-    val provider = BasicInfoProvider()
+    val provider = FancyInfoProvider()
     provider.printInfo(Person())
     println(provider.getSessionId())
 
