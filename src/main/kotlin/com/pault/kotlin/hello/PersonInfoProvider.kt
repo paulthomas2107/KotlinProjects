@@ -38,8 +38,18 @@ fun main() {
     val provider = FancyInfoProvider()
     provider.printInfo(Person())
     println(provider.getSessionId())
-
     checkTypes(provider)
+
+    // Anonymous inner class
+    println("Provider 2...")
+    val provider2 = object: PersonInfoProvider {
+        override val providerInfo: String
+            get() = "*** New Info Provider"
+        fun getSessionId(): String = "*** id"
+    }
+    provider2.printInfo(Person())
+    println(provider2.getSessionId())
+    checkTypes(provider2)
 
 }
 
