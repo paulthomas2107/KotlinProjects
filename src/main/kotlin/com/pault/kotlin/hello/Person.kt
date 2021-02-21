@@ -1,6 +1,6 @@
 package com.pault.kotlin.hello
 
-class Person(val firstName: String = "Jesus", val lastName: String = "Smith") {
+public class Person(val firstName: String = "Jesus", val lastName: String = "Smith") {
 
     /*
     val firstName: String
@@ -29,5 +29,17 @@ class Person(val firstName: String = "Jesus", val lastName: String = "Smith") {
     }
 
     var nickname: String? = null
+        set(value) {
+            field = value
+            println("The new nickname is $value")
+        }
+        get() {
+            println("..the returned value is $field")
+            return field
+        }
 
+    fun printInfo() {
+        var nickNameToPrint = nickname ?: "<NO NICKNAME>"
+        println("$firstName $nickNameToPrint $lastName")
+    }
 }
