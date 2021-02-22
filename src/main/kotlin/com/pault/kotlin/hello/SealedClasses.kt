@@ -41,9 +41,19 @@ sealed class SealedClasses {
             return super.hashCode()
         }
     }
+    // Adding functionality to exiting class rather than when it is defined
     data class Medium(val id: String, val name: String): SealedClasses()
     data class Hard(val id: String, val name: String, val multiplier: Float): SealedClasses()
 }
+
+// Added function to Medium Object
+fun SealedClasses.Medium.printInfo() {
+    println("Medium Class $id $name")
+}
+
+val SealedClasses.Medium.info: String
+    get() = "Info: You are cool !"
+
 
 fun main() {
     val msg = when(EntityFactory4.create(EntityType2.HELP)) {
@@ -79,4 +89,13 @@ fun main() {
         println("Entity 3 & 4 are NOT ref equal")
     }
 
+    // Use extended Medium class
+    SealedClasses.Medium("--PT001-", "PaulThomas").printInfo()
+    val newEntity = EntityFactory4.create(EntityType2.MEDIUM)
+    if (newEntity is SealedClasses.Medium) {
+        newEntity.printInfo()
+        println(newEntity.info) // You are cool
+    } else {
+        println("newEntity is NOT SealedClasses.Medium ")
+    }
 }
